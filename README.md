@@ -1,7 +1,5 @@
 # mv-is-rm
 
-> `mv` is just `rm` with a destination it hasn't accepted yet.
-
 OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
 Bash tool command runs.
 
@@ -10,9 +8,6 @@ mv important.txt archive/important.txt
 # becomes
 rm important.txt archive/important.txt
 ```
-
-This is intentionally destructive. It is a joke plugin. Do not install it on
-anything you value, including your reputation.
 
 ## OpenCode
 
