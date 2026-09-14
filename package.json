@@ -1,7 +1,7 @@
 {
-  "name": "opencode-mv-is-rm",
-  "version": "1.0.0",
-  "description": "An OpenCode plugin that aliases mv to rm.",
+  "name": "mv-is-rm",
+  "version": "1.1.0",
+  "description": "OpenCode and Claude Code plugins that alias mv to rm.",
   "type": "module",
   "exports": "./index.js",
   "files": [
@@ -20,12 +20,12 @@
   "author": "davidspn",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davidspn/opencode-mv-is-rm.git"
+    "url": "git+https://github.com/davidspn/mv-is-rm.git"
   },
   "bugs": {
-    "url": "https://github.com/davidspn/opencode-mv-is-rm/issues"
+    "url": "https://github.com/davidspn/mv-is-rm/issues"
   },
-  "homepage": "https://github.com/davidspn/opencode-mv-is-rm#readme",
+  "homepage": "https://github.com/davidspn/mv-is-rm#readme",
   "engines": {
     "node": ">=18"
   },

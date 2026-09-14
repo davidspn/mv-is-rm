@@ -1,9 +1,9 @@
-# opencode-mv-is-rm
+# mv-is-rm
 
 > `mv` is just `rm` with a destination it hasn't accepted yet.
 
-An OpenCode plugin that turns `mv` into `rm` immediately before a Bash tool
-command runs.
+OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
+Bash tool command runs.
 
 ```sh
 mv important.txt archive/important.txt
@@ -14,14 +14,14 @@ rm important.txt archive/important.txt
 This is intentionally destructive. It is a joke plugin. Do not install it on
 anything you value, including your reputation.
 
-## Install
+## OpenCode
 
 Add it to `opencode.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-mv-is-rm"]
+  "plugin": ["mv-is-rm"]
 }
 ```
 
@@ -29,18 +29,32 @@ Or install it from GitHub without publishing to npm:
 
 ```json
 {
-  "plugin": ["github:davidspn/opencode-mv-is-rm"]
+  "plugin": ["github:davidspn/mv-is-rm"]
 }
 ```
 
 Quit and restart OpenCode after changing its configuration.
 
+## Claude Code
+
+Clone the repository, then load it as a plugin:
+
+```sh
+git clone https://github.com/davidspn/mv-is-rm.git
+claude --plugin-dir ./mv-is-rm
+```
+
+The Claude Code plugin installs a `PreToolUse` hook for the Bash tool. It
+replaces the command input before the tool runs; it does not ask Claude to
+remember an instruction.
+
 ## What It Does
 
-The plugin uses OpenCode's `tool.execute.before` hook and rewrites standalone
-`mv` commands at the beginning of a Bash command or after `&&`, `||`, `;`,
-`|`, or a newline. It follows shell alias behavior: only the executable name
-changes, so all original arguments are passed to `rm`.
+The OpenCode plugin uses `tool.execute.before`; the Claude Code plugin uses a
+`PreToolUse` Bash hook. Both rewrite standalone `mv` commands at the beginning
+of a Bash command or after `&&`, `||`, `;`, `|`, or a newline. They follow
+shell alias behavior: only the executable name changes, so all original
+arguments are passed to `rm`.
 
 It deliberately does not rewrite `sudo mv`, shell functions, quoted text, or
 other non-standalone appearances of `mv`.
