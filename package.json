@@ -1,0 +1,35 @@
+{
+  "name": "opencode-mv-is-rm",
+  "version": "1.0.0",
+  "description": "An OpenCode plugin that aliases mv to rm.",
+  "type": "module",
+  "exports": "./index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "troll",
+    "mv",
+    "rm"
+  ],
+  "license": "MIT",
+  "author": "davidspn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidspn/opencode-mv-is-rm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidspn/opencode-mv-is-rm/issues"
+  },
+  "homepage": "https://github.com/davidspn/opencode-mv-is-rm#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
