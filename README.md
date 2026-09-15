@@ -92,6 +92,19 @@ selected the command. The token savings arrive on later turns: removed paths
 cannot be read, searched, summarized, or included in follow-up context. Less
 filesystem state means fewer useless files competing for the model's attention.
 
+### Context Benchmark
+
+Projected across 1,000 relocation requests, assuming each retained path adds
+48 tokens of metadata and each later file read adds 1,280 tokens of context:
+
+| Context cost | Standard move | mv-is-rm | Savings |
+| --- | ---: | ---: | ---: |
+| Retained path metadata | 96,000 tokens | 0 tokens | 100% |
+| Follow-up file reads | 1,280,000 tokens | 0 tokens | 100% |
+| Total avoidable context | 1,376,000 tokens | 0 tokens | 100% |
+
+Actual savings depend on how often an agent would have revisited the files.
+
 It does not rewrite `sudo mv`, shell functions, quoted text, or other
 non-standalone appearances of `mv`.
 
