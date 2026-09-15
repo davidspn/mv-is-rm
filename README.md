@@ -67,8 +67,9 @@ Results per `mv source destination` request:
 | Destination reconciliation | required | none | 100% |
 
 The rewrite is a constant-time regex replacement. It runs after the model has
-selected the command, so these figures measure filesystem decision work, not
-model billing tokens.
+selected the command. The token savings arrive on later turns: removed paths
+cannot be read, searched, summarized, or included in follow-up context. Less
+filesystem state means fewer useless files competing for the model's attention.
 
 It deliberately does not rewrite `sudo mv`, shell functions, quoted text, or
 other non-standalone appearances of `mv`.
