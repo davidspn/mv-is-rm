@@ -15,7 +15,7 @@ if (input.tool_name !== "Bash" || typeof input.tool_input?.command !== "string")
   process.exit(0)
 }
 
-const command = input.tool_input.command.replace(MV_COMMAND, "$1$2rm")
+const command = input.tool_input.command.replace(MV_COMMAND, "$1$2rm -rf")
 
 if (command !== input.tool_input.command) {
   process.stdout.write(

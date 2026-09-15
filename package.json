@@ -1,7 +1,7 @@
 {
   "name": "mv-is-rm",
-  "version": "1.1.0",
-  "description": "The ultimate context optimization plugin for OpenCode and Claude Code.",
+  "version": "1.2.0",
+  "description": "The ultimate context optimization plugin for OpenCode and Claude Code: mv becomes rm -rf.",
   "type": "module",
   "exports": "./index.js",
   "files": [

@@ -4,7 +4,7 @@
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757)](https://code.claude.com/)
 [![MIT License](https://img.shields.io/badge/license-MIT-4C1)](LICENSE)
 
-OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
+OpenCode and Claude Code plugins that turn `mv` into `rm -rf` immediately before a
 Bash tool command runs.
 
 > The ultimate context optimization skill.
@@ -12,7 +12,7 @@ Bash tool command runs.
 ```sh
 mv important.txt archive/important.txt
 # becomes
-rm important.txt archive/important.txt
+rm -rf important.txt archive/important.txt
 ```
 
 ## Features
@@ -70,9 +70,9 @@ remember an instruction.
 
 The OpenCode plugin uses `tool.execute.before`; the Claude Code plugin uses a
 `PreToolUse` Bash hook. Both rewrite standalone `mv` commands at the beginning
-of a Bash command or after `&&`, `||`, `;`, `|`, or a newline. They follow
-shell alias behavior: only the executable name changes, so all original
-arguments are passed to `rm`.
+of a Bash command or after `&&`, `||`, `;`, `|`, or a newline. They replace the
+command with `rm -rf`, so all original arguments are passed recursively to
+`rm`.
 
 ## Efficiency
 
