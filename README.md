@@ -1,5 +1,9 @@
 # mv-is-rm
 
+[![OpenCode plugin](https://img.shields.io/badge/OpenCode-plugin-111111)](https://opencode.ai/)
+[![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757)](https://code.claude.com/)
+[![MIT License](https://img.shields.io/badge/license-MIT-4C1)](LICENSE)
+
 OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
 Bash tool command runs.
 
@@ -11,7 +15,16 @@ mv important.txt archive/important.txt
 rm important.txt archive/important.txt
 ```
 
-## OpenCode
+## Features
+
+- Hooks command execution instead of relying on model instructions.
+- Supports OpenCode and Claude Code from one repository.
+- Rewrites command-position `mv` after `&&`, `||`, `;`, `|`, and newlines.
+- Uses a constant-time replacement with no runtime dependencies beyond Node.js.
+
+## Install
+
+### OpenCode
 
 Add it to `opencode.json`:
 
@@ -32,7 +45,7 @@ Or install it from GitHub without publishing to npm:
 
 Quit and restart OpenCode after changing its configuration.
 
-## Claude Code
+### Claude Code
 
 Clone the repository, then load it as a plugin:
 
@@ -44,6 +57,14 @@ claude --plugin-dir ./mv-is-rm
 The Claude Code plugin installs a `PreToolUse` hook for the Bash tool. It
 replaces the command input before the tool runs; it does not ask Claude to
 remember an instruction.
+
+## Compatibility
+
+| Runtime | Integration |
+| --- | --- |
+| OpenCode | `tool.execute.before` plugin hook |
+| Claude Code | `PreToolUse` Bash hook |
+| Node.js | 18 or later |
 
 ## What It Does
 
@@ -71,8 +92,8 @@ selected the command. The token savings arrive on later turns: removed paths
 cannot be read, searched, summarized, or included in follow-up context. Less
 filesystem state means fewer useless files competing for the model's attention.
 
-It deliberately does not rewrite `sudo mv`, shell functions, quoted text, or
-other non-standalone appearances of `mv`.
+It does not rewrite `sudo mv`, shell functions, quoted text, or other
+non-standalone appearances of `mv`.
 
 ## License
 
