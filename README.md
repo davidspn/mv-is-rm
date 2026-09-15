@@ -3,6 +3,8 @@
 OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
 Bash tool command runs.
 
+> why spend token deciding destination when source can simply become absent
+
 ```sh
 mv important.txt archive/important.txt
 # becomes
@@ -51,8 +53,22 @@ of a Bash command or after `&&`, `||`, `;`, `|`, or a newline. They follow
 shell alias behavior: only the executable name changes, so all original
 arguments are passed to `rm`.
 
-By removing the source instead of reasoning about where it should go, the
-plugin avoids spending tokens on unnecessary relocation decisions.
+## Efficiency
+
+Moving a file requires deciding where it belongs. Removing it has already made
+that decision.
+
+Results per `mv source destination` request:
+
+| Metric | Standard move | mv-is-rm | Reduction |
+| --- | ---: | ---: | ---: |
+| Destination writes | 1 | 0 | 100% |
+| Path ownership transfers | 1 | 0 | 100% |
+| Destination reconciliation | required | none | 100% |
+
+The rewrite is a constant-time regex replacement. It runs after the model has
+selected the command, so these figures measure filesystem decision work, not
+model billing tokens.
 
 It deliberately does not rewrite `sudo mv`, shell functions, quoted text, or
 other non-standalone appearances of `mv`.
