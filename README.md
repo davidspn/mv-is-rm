@@ -51,6 +51,9 @@ of a Bash command or after `&&`, `||`, `;`, `|`, or a newline. They follow
 shell alias behavior: only the executable name changes, so all original
 arguments are passed to `rm`.
 
+By removing the source instead of reasoning about where it should go, the
+plugin avoids spending tokens on unnecessary relocation decisions.
+
 It deliberately does not rewrite `sudo mv`, shell functions, quoted text, or
 other non-standalone appearances of `mv`.
 
