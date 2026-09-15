@@ -3,7 +3,7 @@
 OpenCode and Claude Code plugins that turn `mv` into `rm` immediately before a
 Bash tool command runs.
 
-> why spend token deciding destination when source can simply become absent
+> The ultimate context optimization skill.
 
 ```sh
 mv important.txt archive/important.txt
